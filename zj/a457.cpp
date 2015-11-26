@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <cstring>
 #include <algorithm>
 #include <queue>
 using namespace std;
@@ -13,11 +14,11 @@ struct Range
 {
     int l;
     int r;
-    Range(int a, int b) : l(a), r(b) {}
+    Range(int a = 0, int b = 0) : l(a), r(b) {}
 };
 
 Node n[maxk];
-Node tmp[maxk]
+Node tmp[maxk];
 int ans;
 
 bool cmp(const Node &a, const Node &b)
@@ -75,7 +76,8 @@ int main()
     queue<Range> q;
     {
         bool equality = n[0].s == n[1].s;
-        for (int i = 2, Range rg(0, 2); i < k; i++) {
+        Range rg(0, 2);
+        for (int i = 2; i < k; i++) {
             if ((n[i].s == n[i - 1].s) == equality) {
                 rg.r++;
             } else {
@@ -96,7 +98,7 @@ int main()
     if (q.size() == 0) {
         merge_sort(0, k);
     } else {
-        range rg[2];
+        Range rg[2];
         while (q.size() > 1) {
             if (q.front().r == k) {
                 q.push(q.front());
@@ -108,7 +110,7 @@ int main()
                 q.pop();
             }
             merge(rg[0].l, rg[0].r, rg[1].r);
-            rg[0].r = rg.[1].r;
+            rg[0].r = rg[1].r;
             q.push(rg[0]);
         }
     }
