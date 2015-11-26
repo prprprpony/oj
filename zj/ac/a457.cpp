@@ -19,7 +19,7 @@ struct Range
 
 Node n[maxk];
 Node tmp[maxk];
-int ans;
+long long ans;
 
 bool cmp(const Node &a, const Node &b)
 {
@@ -117,7 +117,7 @@ int main()
         }
     }
 
-    printf("%d\n",ans);
+    printf("%lld\n",ans);
 
     return 0;
 }
