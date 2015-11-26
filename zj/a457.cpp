@@ -41,7 +41,7 @@ void merge(int left, int mid, int right) // merge [left, mid) and [mid, right)
 
         if (n[j].r < tmp[i].r) {
             n[k] = n[j++];
-            ans += left_size - i; // caculate reverse order number
+            ans += left_size - i; // caculate inversions
         } else {
             n[k] = tmp[i++];
         }
@@ -74,6 +74,7 @@ int main()
         scanf("%d", &n[i].r);
     sort(n, n + k, cmp);
     queue<Range> q;
+
     {
         bool equality = n[0].s == n[1].s;
         Range rg(0, 2);
@@ -93,11 +94,12 @@ int main()
                 equality = !equality;
             }
         }
+        if (!equality)
+            merge_sort(rg);
+        q.push(rg);
     }
 
-    if (q.size() == 0) {
-        merge_sort(0, k);
-    } else {
+    if (q.size() > 1) {
         Range rg[2];
         while (q.size() > 1) {
             if (q.front().r == k) {
