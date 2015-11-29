@@ -24,12 +24,8 @@ int dfs(int len, int x, int y, int d)
         }
         return 0;
     }
-    if (abs(x) + abs(y) > (n + len) * (n - len + 1) / 2)
-        return 0;
     if (stop.count(pair<int,int>(x, y)))
         return 0;
-    stop.insert(pair<int,int>(x, y));
-/*
     {// cutting
         int h[2];
         // h[0] = len + (len + 2) + ... +  (n - (n - len) % 2)
@@ -37,7 +33,7 @@ int dfs(int len, int x, int y, int d)
         for (int i = 0, hi, lo; i < 2; i++) {
             lo = len + i;
             hi = n - (n - len + i) % 2;
-            h[i] = (hi + lo) * (hi - lo + 1) / 2;
+            h[i] = (hi + lo) * ((hi - lo) / 2 + 1) / 2;
         }
         if (dx[d] != 0) {
             if (abs(x) > h[0] || abs(y) > h[1])
@@ -47,7 +43,8 @@ int dfs(int len, int x, int y, int d)
                 return 0;
         }
     }
-*/
+    stop.insert(pair<int,int>(x, y));
+
     vector<pair<int, int> >::iterator it;
     int nx, ny, nd;
     int r = 0;
@@ -65,7 +62,7 @@ int dfs(int len, int x, int y, int d)
                 continue;
         }
         p[len] = dir[nd];
-        r += dfs(len + 1, nx, ny, 2 - d); // turn virtically
+        r += dfs(len + 1, nx, ny, 2 - d); // turn vertically
     }
     stop.erase(pair<int,int>(x, y));
     return r;
