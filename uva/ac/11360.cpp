@@ -5,9 +5,8 @@ const int maxn = 10;
 int matrix[maxn][maxn];
 int row[maxn];
 int col[maxn];
-int *r;
-int *c;
 char op[15];
+bool transposed;
 int delta;
 int main()
 {
@@ -15,8 +14,7 @@ int main()
     scanf("%d", &t);
     for (int kase = 1; kase <= t; kase++) {
         scanf("%d ", &n);
-        r = row;
-        c = col;
+        transposed = false;
         delta = 0;
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++)
@@ -35,28 +33,28 @@ int main()
                     delta = (delta + 9) % 10;
                     break;
                 case 't':
-                    swap(r, c);
+                    transposed = !transposed;
                     break;
                 default:
                     scanf("%d%d", &a, &b);
-                    if (op[0] == 'r')
-                        swap(r[a], r[b]);
+                    if ((op[0] == 'r') == !transposed)
+                        swap(row[a], row[b]);
                     else
-                        swap(c[a], c[b]);
+                        swap(col[a], col[b]);
                     break;
             }
         }
         printf("Case #%d\n", kase);
-        if (r == row) {
+        if (!transposed) {
             for (int i = 1; i <= n; i++) {
                 for (int j = 1; j <= n; j++)
-                    putchar((matrix[r[i]][c[j]] + delta) % 10 + '0');
+                    putchar((matrix[row[i]][col[j]] + delta) % 10 + '0');
                 putchar('\n');
             }
         } else {
-            for (int i = 1; i <= n; i++) {
-                for (int j = 1; j <= n; j++)
-                    putchar((matrix[c[j]][r[i]] + delta) % 10 + '0');
+            for (int j = 1; j <= n; j++) {
+                for (int i = 1; i <= n; i++)
+                    putchar((matrix[row[i]][col[j]] + delta) % 10 + '0');
                 putchar('\n');
             }
         }
