@@ -87,7 +87,7 @@ Treap* build(int n) {
     Treap *r = NULL;
     for (int i = 1; i <= n; i++)
         r = merge(r, new Treap(i));
-#else // linear build
+#else // linear build O(n)
     stack<Treap*> s;
     Treap *nt;
     Treap *r;
@@ -154,6 +154,15 @@ void printlr(Treap* t) {
 }
 #endif
 
+void printans(Treap* t) {
+    if (t == NULL)
+        return;
+    push(t);
+    printans(t->l);
+    printf("%d\n", t->val);
+    printans(t->r);
+}
+
 int main()
 {
     srand(time(NULL));
@@ -177,9 +186,5 @@ int main()
         printlr(root);
 #endif
     }
-    for (int i = 1; i <= n; i++) {
-        split(root, 1, tl, root);
-        printf("%d\n", tl->val);
-        delete tl;
-    }
+    printans(root);
 }
