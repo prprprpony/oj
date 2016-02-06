@@ -133,7 +133,6 @@ inline void slice(treap* t, int x, int y, treap*& l, treap*& m, treap*& r) {
 treap* build(int n) {
     treap* r = NULL;
     int v;
-#ifdef LB
     stack<treap*> rc;
     treap* nt;
     while (n--) {
@@ -153,12 +152,6 @@ treap* build(int n) {
         pull(r = rc.top());
         rc.pop();
     }
-#else
-    while (n--) {
-        scanf("%d", &v);
-        r = merge(r, New(v));
-    }
-#endif
     return r;
 }
 
