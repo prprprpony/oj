@@ -1,6 +1,6 @@
 /*
-    "Not" Mo's algorithm
-    O(N * sqrt(Q))
+    Mo's algorithm
+    O((N + Q) * sqrt(N))
 */
 #include <cstdio>
 #include <algorithm>
@@ -18,26 +18,14 @@ int mx;
 
 struct Query
 {
-    int i, l, r;
+    int i, block, l, r;
+    bool operator < (const Query& b) const {
+        return block < b.block || (block == b.block && r < b.r);
+    }
+
 } q[MAXQ];
 
 pii ans[MAXQ];
-
-struct cmpl
-{
-    bool operator () (const Query& a, const Query& b)
-    {
-        return a.l < b.l;
-    }
-};
-
-struct cmpr
-{
-    bool operator () (const Query& a, const Query& b)
-    {
-        return a.r < b.r;
-    }
-};
 
 void insert(int v) {
     num[cnt[v]]--;
@@ -80,27 +68,22 @@ int main()
     scanf("%d%d", &n, &m);
     for (int i = 1; i <= n; i++)
         scanf("%d", a + i);
+    int size = sqrt(n) + 1;
     for (int i = 0; i < m; i++) {
         q[i].i = i;
         scanf("%d%d", &q[i].l, &q[i].r);
+        q[i].block = q[i].l / size;
     }
 
-    sort(q, q + m, cmpl());
-    int size = sqrt(m);
-    for (int i = 0; i < m; i += size)
-        sort(q + i, q + min(i + size, m), cmpr());
+    sort(q, q + m);
 
     int l = q[0].l, r = q[0].l - 1;
-    for (int i = 0; i < m; i += size) {
+    for (int i = 0; i < m; i++) {
         expandr(r, q[i].r);
+        expandl(l, q[i].l);
         shrinkr(r, q[i].r);
         shrinkl(l, q[i].l);
-        for (int j = i; j < i + size && j < m; j++) {
-            expandr(r, q[j].r);
-            expandl(l, q[j].l);
-            shrinkl(l, q[j].l);
-            ans[q[j].i] = {mx, num[mx]};
-        }
+        ans[q[i].i] = {mx, num[mx]};
     }
 
     for (int i = 0; i < m; i++)
