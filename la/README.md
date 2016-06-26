@@ -1,2 +1,1 @@
-## ACM-ICPC Live Archive 
-[link](https://icpcarchive.ecs.baylor.edu/index.php)
+## [ACM-ICPC Live Archive](https://icpcarchive.ecs.baylor.edu/index.php)

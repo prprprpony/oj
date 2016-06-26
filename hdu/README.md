@@ -1,2 +1,1 @@
-## HDU Online Judge
-[link](http://acm.hdu.edu.cn/)
+## [HDU Online Judge](http://acm.hdu.edu.cn/)

@@ -1,2 +1,1 @@
-## PKU JudgeOnline
-[link](http://poj.org/)
+## [PKU JudgeOnline](http://poj.org/)

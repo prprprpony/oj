@@ -1,2 +1,1 @@
-## Codeforces
-[link](http://codeforces.com/)
+## [Codeforces](http://codeforces.com/)

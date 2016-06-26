@@ -1,2 +1,1 @@
-## Timus Online Judge
-[link](http://acm.timus.ru/)
+## [Timus Online Judge](http://acm.timus.ru/)

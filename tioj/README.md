@@ -1,2 +1,1 @@
-## TIOJ Infor Online Judge
-[link](http://tioj.infor.org/)
+## [TIOJ Infor Online Judge](http://tioj.infor.org/)

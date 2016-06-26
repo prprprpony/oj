@@ -1,2 +1,1 @@
-## TNFSHOJ
-[link](http://toj.tfcis.org/oj/info/)
+## [TNFSHOJ](http://toj.tfcis.org/oj/info/)

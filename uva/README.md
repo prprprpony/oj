@@ -1,2 +1,1 @@
-## UVa Online Judge
-[link](https//uva.onlinejudge.org/)
+## [UVa Online Judge](https://uva.onlinejudge.org/)

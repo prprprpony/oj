@@ -1,2 +1,1 @@
-## Sphere Online Judge (SPOJ)
-[link](http://www.spoj.com/)
+## [Sphere Online Judge (SPOJ)](http://www.spoj.com/)

@@ -1,2 +1,1 @@
-## 高中生程式解題系統（Zero Judge）
-[link](http://zerojudge.tw/)
+## [高中生程式解題系統（Zero Judge）](http://zerojudge.tw/)
