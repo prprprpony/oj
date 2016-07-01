@@ -6,6 +6,15 @@ int T[maxn][maxn];
 long long BIT[maxn][maxn];
 int N, Q;
 inline int lowbit(int x) {return x & -x;}
+void build()
+{
+    for (int r = 1; r <= N; ++r)
+        for (int c = 1; c <= N; ++c)
+            BIT[r][c] = BIT[r - 1][c] + BIT[r][c - 1] - BIT[r - 1][c - 1] + T[r][c];
+    for (int r = N; r >= 1; --r)
+        for (int c = N; c >= 1; --c)
+            BIT[r][c] -= BIT[r ^ lowbit(r)][c] + BIT[r][c ^ lowbit(c)] - BIT[r ^ lowbit(r)][c ^ lowbit(c)];
+}
 void add(int r, int c, int v)
 {
     for ( ; r <= N; r += lowbit(r))
@@ -28,10 +37,9 @@ int main()
 {
     scanf("%d%d", &N, &Q);
     for (int r = 1; r <= N; ++r)
-        for (int c = 1; c <= N; ++c) {
+        for (int c = 1; c <= N; ++c)
             scanf("%d", &T[r][c]);
-            add(r, c, T[r][c]);
-        }
+    build();
     while (Q--) {
         int cmd;
         scanf("%d", &cmd);
