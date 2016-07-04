@@ -1,7 +1,7 @@
 #include <cstdio>
 #include <random>
 #include <algorithm>
-#include <stack>
+#include <vector>
 using namespace std;
 const int maxn = 1.3e5;
 mt19937 rr(20101010);
