@@ -11,13 +11,10 @@ int pos(int i, int j)
 }
 void putsqr(string & s, int r, int c)
 {
-    int j = 2 * c + 1;
-    s[pos(r, j)] = s[pos(r, j + 2)] = s[pos(r + 2, j)] = s[pos(r + 2, j + 2)] = '_';
-    int i = r + 1;
-    s[pos(i, j - 1)] = s[pos(i, j + 3)] = s[pos(i + 1, j - 1)] = s[pos(i + 1, j + 3)] = '|';
-    for (int jj = j; jj < j + 3; ++jj)
-        s[pos(i, jj)] = ' ';
-    s[pos(i + 1, j + 1)] = ' ';
+    c <<= 1;
+    s[pos(r, c + 1)] = s[pos(r, c + 3)] = s[pos(r + 2, c + 1)] = s[pos(r + 2, c + 3)] = '_';
+    s[pos(r + 1, c)] = s[pos(r + 1, c + 4)] = s[pos(r + 2, c)] = s[pos(r + 2, c + 4)] = '|';
+    s[pos(r + 1, c + 1)] = s[pos(r + 1, c + 2)] = s[pos(r + 1, c + 3)] = s[pos(r + 2, c + 2)] = ' ';
 }
 void printsqr(const string & s)
 {
@@ -26,13 +23,16 @@ void printsqr(const string & s)
             cout << s[pos(r, c)];
         cout << "#\n";
     }
+    cout << '\n';
 }
 void build(string & s, int d, int e)
 {
+    if (ok.count(s))
+        return;
     if (d)
         ok.insert(s);
 #ifdef PP
-    if (d <= 1)
+    if (d <= 2)
         printsqr(s);
 #endif
     if (d == e)
@@ -59,8 +59,8 @@ int main()
         for (int i = 0; i < 4; ++i) {
             string t;
             getline(cin, t);
+            t.pop_back();
             s += t;
-            s.pop_back();
         }
         static int kase = 0;
         cout << "Case " << ++kase << ": " << (ok.count(s) ? "Yes" : "No") << '\n';
