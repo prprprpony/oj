@@ -1,19 +1,22 @@
 #include <cstdio>
+#include <cstring>
 #include <utility>
 #include <vector>
 #include <queue>
-#include <unordered_map>
+#include <functional>
 #define D first
 #define V second
 #define C first
 #define P second
 using namespace std;
 const int maxn = 1024;
-const int inf = 2e9;
+const int maxc = 125;
+const int inf = 0x7f7f7f7f;
 int p[maxn];
 typedef pair<int,int> pii;
 typedef pii node;
 vector<pii> g[maxn];
+int minc[maxn * maxc];
 
 int main()
 {
@@ -33,7 +36,7 @@ int main()
 		int c, s, e;
 		scanf("%d%d%d", &c, &s, &e);
 		priority_queue<node, vector<node>, greater<node> > pq;
-		unordered_map<int, int> minc;
+		memset(minc, 0x7f, (c + 1) * n * sizeof(int));
 		minc[s] = 0;
 		pq.push({0, s});
 		while (pq.size()) {
@@ -44,27 +47,25 @@ int main()
 				continue;
 			else if (u.V == e)
 				break;
-
 			int nxt;
 			if (u.D < c) {
 				int cost = t.C + p[u.V];
 				nxt = (u.D + 1) * n + u.V;
-				if (!minc.count(nxt) || minc[nxt] > cost) {
+				if (minc[nxt] > cost) {
 					minc[nxt] = cost;
 					pq.push({cost, nxt});
 				}
 			}
-
 			for (const pii & x : g[u.V])
 				if (u.D >= x.D) {
 					nxt = (u.D - x.D) * n + x.V;
-					if (!minc.count(nxt) || minc[nxt] > t.C) {
+					if (minc[nxt] > t.C) {
 						minc[nxt] = t.C;
 						pq.push({t.C, nxt});
 					}
 				}
 		}
-		if (minc.count(e))
+		if (minc[e] < inf)
 			printf("%d\n", minc[e]);
 		else
 			puts("impossible");
