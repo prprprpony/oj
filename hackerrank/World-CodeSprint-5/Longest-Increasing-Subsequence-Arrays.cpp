@@ -1,6 +1,4 @@
 #include <cstdio>
-#include <cctype>
-#include <cstring>
 #include <algorithm>
 using namespace std;
 typedef long long ll;
