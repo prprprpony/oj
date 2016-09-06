@@ -6,8 +6,6 @@ struct node
 {
 	int cov;
 	node * lc, * rc;
-	node() {}
-	node(int v) : cov(v), lc(NULL), rc(NULL) {} 
 };
 node * t[2]; // t0:rows, t1:cols
 inline int val(node * o) {return o ? o->cov : 0;}
@@ -26,7 +24,7 @@ void upt(node *& o, int l, int r, int i, int j, int v)
 	if (j < l || r < i)
 		return;
 	if (!o)
-		o = new node(0);
+		o = new node();
 	if (o->cov >= v)
 		return;
 	if (i <= l && r <= j) {
