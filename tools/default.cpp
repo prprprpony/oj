@@ -55,8 +55,4 @@ void PI(const T & a, const Args & ... args) {__PI(a), __PSI<sep, Args...>(args..
 
 int main()
 {
-	int a, c;
-	ll b;
-	RI(a, b, c);
-	PI(a, b, c);
 }
