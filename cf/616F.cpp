@@ -7,7 +7,7 @@ const int N = 1.12e5;
 const int LEN = 6.4 * N;
 int len;
 int c[N], sz[N];
-int s[LEN], sa[LEN], * rk, ht[LEN], v[2][LEN], ct[LEN], cost[LEN];
+int s[LEN], sa[LEN], * rk, ht[LEN], v[2][LEN], ct[LEN];
 ll co[LEN];
 void build_sa(int n,int m)
 {
@@ -97,9 +97,7 @@ int main()
 	}
 	int idx = n - 1;
 	per(i,len-1,-1) 
-		cost[i] = c[idx = min(idx, s[i])];
-	rep(i,0,len)
-		co[i] = cost[sa[i]];
+		co[rk[i]] = c[idx = min(idx, s[i])];
 	rep(i,1,len)
 		co[i] += co[i - 1];
 	bit.init(max,-1);
