@@ -80,8 +80,8 @@ void build_ett()
 	ett(0, 1, 0);
 	int n = top;
 	copy(et, et + n, st[0]);
-	for (int k = 1; (1 << k) < n; ++k)
-		rp(i,n - (1 << k))
+	for (int k = 1; (1 << k) <= n; ++k)
+		rp(i,n - (1 << k) + 1)
 			st[k][i] = min(st[k - 1][i], st[k - 1][i + (1 << (k - 1))]);
 }
 int dist(int a, int b)
