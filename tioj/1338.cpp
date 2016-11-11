@@ -14,9 +14,9 @@ struct st
 	void init()
 	{
 		copy(A, A + n, t[0]);
-		for (int i = 0; (1 << i) < n; ++i)
-			for (int j = 0; j + (1 << i) < n; ++j)
-				t[i+1][j] = f(t[i][j], t[i][j + (1 << i)]);
+		for (int i = 1; (1 << i) <= n; ++i)
+			for (int j = 0; j + (1 << i) <= n; ++j)
+				t[i][j] = f(t[i-1][j], t[i-1][j + (1 << (i - 1))]);
 	}
 	ll query(int l, int r) // [l, r)
 	{
