@@ -37,7 +37,7 @@ int main()
 	int i;
 	for (i = 0; i < n; ++i) {
 		auto lb = s.lower_bound({rng[pr[i]].S, -87});
-		if (lb->F > rng[pr[i]].F)
+		if (lb == s.end() || lb->F > rng[pr[i]].F)
 			break;
 		ans[pr[i]] = lb->S;
 		s.erase(lb);
