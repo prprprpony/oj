@@ -50,10 +50,9 @@ struct event
 {
 	int t; // 1: add, -1:remove, 0: query
 	int l, r, k;
-	int cur;
 	int v;
 	event() {}
-	event(int _t, int i, int j, int _k, int _v) : t(_t), l(i), r(j), k(_k), v(_v), cur(0) {}
+	event(int _t, int i, int j, int _k, int _v) : t(_t), l(i), r(j), k(_k), v(_v) {}
 } e[EN], tmp[EN];
 int ans[M];
 int top, qt;
@@ -90,8 +89,8 @@ void DC(int vl, int vr, int el, int er)
 	REP(i,el,er)
 		if (!e[i].t) {
 			int v = qry(e[i].l, e[i].r);
-			if (e[i].cur + v < e[i].k) {
-				e[i].cur += v;
+			if (v < e[i].k) {
+				e[i].k -= v;
 				tmp[tp++] = e[i];
 			} else {
 				e[em++] = e[i];
