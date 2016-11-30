@@ -3,6 +3,7 @@ using namespace std;
 const int maxn = 3233;
 bool tl[maxn];
 int p[maxn], st[maxn];
+vector<int> c[maxn];
 int main()
 {
 	ios::sync_with_stdio(0);
@@ -24,15 +25,21 @@ int main()
 	cout << abs(k) << '\n';
 	if (k > 0) {
 		for (int i = 1; i <= n && k; ++i) {
-			int tp = 0;
-			for (int v = p[i]; v != i; v = p[v]) {
-				while (tp && st[tp-1] > v)
-					--tp;
-				st[tp++] = v;
+			if (!c[i].size()) {
+				for (int v = p[i]; v != i; v = p[v]) {
+					int tp = c[i].size();
+					while (tp && c[i][tp-1] > v)
+						--tp;
+					copy(c[i].begin() + tp, c[i].end(), back_inserter(c[v]));
+					c[i].resize(tp);
+					c[i].push_back(v);
+				}
 			}
-			for (int j = 0; j < tp && k; ++j) {
-				cout << i << ' ' << st[j] <<  " \n"[--k == 0];
-				swap(p[i], p[st[j]]);
+			for (auto j : c[i]) {
+				cout << i << ' ' << j <<  " \n"[--k == 0];
+				swap(p[i], p[j]);
+				if (!k)
+					break;
 			}
 		}
 	} else if (k < 0) {
