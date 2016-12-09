@@ -1,57 +1,45 @@
 #include <bits/stdc++.h>
 using namespace std;
+// nichijou
+#define REP(i,s,e) for (int i = (s), __e = (e); i < __e; ++i)
+#define RP(i,n) REP(i,0,n)
+#define PER(i,s,e) for (int i = (s) - 1, __e = (e); i >= __e; --i)
+#define PR(i,n) PER(i,n,0)
+#define DO(n) REP(__i,0,n)
+template<typename T>
+void cmax(T & a, T b) {a = max(a, b);}
+template<typename T>
+void cmin(T & a, T b) {a = min(a, b);}
+
+// data type
 typedef long long ll;
-#define rep(i, begin, end) for (__typeof(end) i = (begin) - ((begin) > (end)); i != (end) - ((begin) > (end)); i += 1 - 2 * ((begin) > (end)))
-#define pb push_back
-#define eb emplace_back
-#define ALL(x) (x).begin(), (x).end()
-#define X first
-#define Y second
-// read integers
-int RI() {return 0;}
-template<typename T>
-int RI(T & a)
-{
-	int c;
-	int s = 1;
-	while (!((c = getchar()) == '-' || isdigit(c) || c == EOF));
-	if (c == EOF)
-		return 0;
-	if (c == '-') {
-		s = -1;
-		c = getchar();
-	}
-	a = 0;
-	do {
-		a = 10 * a + s * (c - '0');
-	} while (isdigit(c = getchar()));
-	return 1;
-}
-template<typename T, typename... Args>
-int RI(T & a, Args & ... args) {return RI(a) ? 1 + RI(args...) : 0;}
-//print integers, python style
-template<typename T>
-void __PI(T a)
-{
-	static const int maxd = 25;
-	static char d[maxd];
-	int i = maxd - 1;
-	int s = a < 0 ? -1 : 1;
-	do {
-		d[--i] = s * (a % 10) + '0';
-	} while (a /= 10);
-	if (s < 0)
-		d[--i] = '-';
-	fputs(d + i, stdout);
-}
-template<char sep>
-void __PSI() {}
-template<char sep, typename T>
-void __PSI(const T & a) {putchar(sep), __PI(a);}
-template<char sep, typename T, typename... Args>
-void __PSI(const T & a, const Args & ... args) {__PSI<sep, T>(a), __PSI<sep, Args...>(args...);}
-template<char sep = ' ', char end = '\n', typename T, typename... Args>
-void PI(const T & a, const Args & ... args) {__PI(a), __PSI<sep, Args...>(args...), putchar(end);}
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+#define F first
+#define S second
+
+// STL container
+typedef vector<int> vi;
+typedef vector<ll> vll;
+#define SZ(a) ((int)a.size())
+#define ALL(a) a.begin(), a.end()
+#define CLR(a) a.clear()
+#define DB(a) a.pop_back()
+#define DF(a) a.pop_front()
+#define PB push_back
+#define EB emplace_back
+
+// input
+bool RD(void) {return true;}
+bool RD(int & a) {return scanf("%d", &a) == 1;}
+bool RD(ll & a) {return scanf("%lld", &a) == 1;}
+bool RD(double & a) {return scanf("%lf", &a) == 1;}
+bool RD(char & a) {return scanf(" %c", &a) == 1;}
+bool RD(char * a) {return scanf("%s", a) == 1;}
+template<typename T, typename ... TT>
+bool RD(T & a, TT & ...  b) {return RD(a) && RD(b...);}
+
+/* Good Luck && Have Fun ! */
 
 int main()
 {
