@@ -31,7 +31,7 @@ typedef vector<ll> vll;
 #define PB push_back
 #define EB emplace_back
 
-/* reading input is now 20% cooler */
+// input
 bool RD(void) {return true;}
 bool RD(int & a) {return scanf("%d", &a) == 1;}
 bool RD(ll & a) {return scanf("%lld", &a) == 1;}
@@ -42,7 +42,33 @@ template<typename T, typename ... TT>
 bool RD(T & a, TT & ...  b) {return RD(a) && RD(b...);}
 
 /* Good Luck && Have Fun ! */
-
 int main()
 {
+	int n,m;
+	ll k;
+	RD(n,m,k);
+	cmin(m,n);
+	deque<pll> mn, mx;
+	vector<pii> ans;
+	RP(i,n+m-2) {
+		if (i < n) {
+			ll h;
+			RD(h);
+			while (SZ(mn) && BK(mn).S >= h)
+				DB(mn);
+			mn.EB(i,h);
+			while (SZ(mx) && BK(mx).S <= h)
+				DB(mx);
+			mx.EB(i,h);
+		}
+		while (FT(mn).F + m <= i)
+			DF(mn);
+		while (FT(mx).F + m <= i)
+			DF(mx);
+		if (FT(mx).S - FT(mn).S == k)
+			ans.EB(max(0,i-m+1),min(n-1,i));
+	}
+	printf("%d\n", SZ(ans));
+	for (auto x : ans)
+		printf("%d %d\n", x.F+1, x.S+1);
 }
