@@ -9,7 +9,17 @@ typedef pair<int,int> pii;
 #define RP(i,n) REP(i,0,n)
 #define CZ(a,n) memset((a), 0, (n) * sizeof(*(a)))
 inline bool RD(void) {return true;}
-inline bool RD(int & a) {return scanf("%d", &a) == 1;}
+inline bool RD(int & a)
+{
+	int c;
+	while (!isdigit(c = getchar()) && c != EOF);
+	if (c == EOF) return false;
+	a = 0;
+	do {
+		a = 10 * a + c - '0';
+	} while (isdigit(c = getchar()));
+	return true;
+}
 template <typename T, typename ... TT>
 inline bool RD(T & a, TT & ... b) {return RD(a) && RD(b...);}
 
