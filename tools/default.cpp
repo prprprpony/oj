@@ -41,6 +41,18 @@ bool RD(char * a) {return scanf("%s", a) == 1;}
 template<typename T, typename ... TT>
 bool RD(T & a, TT & ...  b) {return RD(a) && RD(b...);}
 
+/* For it's time for you to fulfill your output */
+void PT(const int a) {printf("%d", a);}
+void PT(const ll a) {printf("%lld", a);}
+void PT(const double a) {printf("%.16f", a);}
+void PT(const char a) {putchar(a);}
+void PT(const char * a) {fputs(a, stdout);}
+
+/* The line will last forever! */
+void PL(void) {PT('\n');}
+template<typename T, typename ... TT>
+void PL(const T a, const TT ...  b) {PT(a); if (sizeof...(b)) PT(' '); PL(b...);}
+
 /* Good Luck && Have Fun ! */
 
 int main()
