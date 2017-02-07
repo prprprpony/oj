@@ -1,2 +1,2 @@
 # oj
-codes of online judge or programming contest problems solved by me
+low-quality accepted code for competitive programming problems on various online judges
