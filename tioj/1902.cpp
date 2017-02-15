@@ -4,7 +4,7 @@ using namespace std;
 #define RP(i,e) REP(i,0,e)
 template<typename T>
 inline void cmax(T & a, T b) {a = max(a, b);}
-const int N = 15566, D = __lg(1000000000);
+const int N = 1e5+87, D = __lg(2000000000);
 int S;
 struct Qry
 {
@@ -50,8 +50,15 @@ int main()
 	int n, m;
 	scanf("%d%d", &n, &m);
 	S = sqrt(n+1) + 0.5;
-	REP(i,1,n+1) scanf("%d", a + i), a[i] ^= a[i - 1];
-	RP(i,m) {int l, r; scanf("%d%d", &l, &r); q[i] = Qry(i,l-1,r+1);}
+	REP(i,1,n+1) {
+		scanf("%d", a + i);
+		a[i] ^= a[i - 1];
+	}
+	RP(i,m) {
+		int l, r;
+		scanf("%d%d", &l, &r);
+		q[i] = Qry(i,l-1,r+1);
+	}
 	sort(q, q + m);
 	for (int s = 0, e = 0; s < m; s = e) {
 		while (e < m && q[e].k == q[s].k) ++e;
