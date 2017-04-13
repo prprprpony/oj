@@ -33,6 +33,7 @@ bool RD(T & a, TT & ...  b) {return RD(a) && RD(b...);}
 #define DRIIII(a,b,c,d) DRI(a); DRIII(b,c,d)
 
 /* For it's time for you to fulfill your output. */
+void PT(const char * a) {fputs(a, stdout);}
 void PT(char * a) {fputs(a, stdout);}
 template<typename T>
 void PT(const T a)
@@ -60,7 +61,3 @@ void PT(const char a) {putchar(a);}
 void PL(void) {PT('\n');}
 template<typename T, typename ... TT>
 void PL(const T a, const TT ...  b) {PT(a); if (sizeof...(b)) PT(' '); PL(b...);}
-
-int main()
-{
-}
