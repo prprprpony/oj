@@ -6,18 +6,18 @@ template<typename T>
 int RI(T & a)
 {
 	int c;
-	int s = 1;
 	while (!((c = getchar()) == '-' || isdigit(c) || c == EOF));
 	if (c == EOF)
 		return 0;
-	if (c == '-') {
-		s = -1;
-		c = getchar();
-	}
 	a = 0;
-	do {
-		a = 10 * a + s * (c - '0');
-	} while (isdigit(c = getchar()));
+	if (c == '-') {
+		while (isdigit(c = getchar()))
+			a = 10 * a - (c & 15);
+	} else {
+		do {
+			a = 10 * a + (c & 15);
+		} while (isdigit(c = getchar()));
+	}
 	return 1;
 }
 template<typename T, typename... Args>
