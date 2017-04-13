@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
-// read integers
-int RI() {return 0;}
+/* Reading input is now 20% cooler! */
+bool RD(void) {return true;}
 template<typename T>
-int RI(T & a)
+bool RD(T & a) 
 {
 	int c;
 	while (!((c = getchar()) == '-' || isdigit(c) || c == EOF));
@@ -20,31 +20,46 @@ int RI(T & a)
 	}
 	return 1;
 }
-template<typename T, typename... Args>
-int RI(T & a, Args & ... args) {return RI(a) ? 1 + RI(args...) : 0;}
-//print integers, python style
+bool RD(double & a) {return scanf("%lf", &a) == 1;}
+bool RD(char & a) {return scanf(" %c", &a) == 1;}
+bool RD(char * a) {return scanf("%s", a) == 1;}
+template<typename T, typename ... TT>
+bool RD(T & a, TT & ...  b) {return RD(a) && RD(b...);}
+
+/* Do princesses dream of magic sheep? */
+#define DRI(a) int a; RD(a)
+#define DRII(a,b) DRI(a); DRI(b)
+#define DRIII(a,b,c) DRI(a); DRII(b,c)
+#define DRIIII(a,b,c,d) DRI(a); DRIII(b,c,d)
+
+/* For it's time for you to fulfill your output. */
+void PT(char * a) {fputs(a, stdout);}
 template<typename T>
-void __PI(T a)
+void PT(const T a)
 {
 	static const int maxd = 25;
 	static char d[maxd];
 	int i = maxd - 1;
-	int s = a < 0 ? -1 : 1;
-	do {
-		d[--i] = s * (a % 10) + '0';
-	} while (a /= 10);
-	if (s < 0)
+	T t = a;
+	if (t < 0) {
+		do {
+			d[--i] = -(t % 10) | 48;
+		} while (t /= 10);
 		d[--i] = '-';
-	fputs(d + i, stdout);
+	} else {
+		do {
+			d[--i] = (t % 10) | 48;
+		} while (t /= 10);
+	}
+	PT(d + i);
 }
-template<char sep>
-void __PSI() {}
-template<char sep, typename T>
-void __PSI(const T & a) {putchar(sep), __PI(a);}
-template<char sep, typename T, typename... Args>
-void __PSI(const T & a, const Args & ... args) {__PSI<sep, T>(a), __PSI<sep, Args...>(args...);}
-template<char sep = ' ', char end = '\n', typename T, typename... Args>
-void PI(const T & a, const Args & ... args) {__PI(a), __PSI<sep, Args...>(args...), putchar(end);}
+void PT(const double a) {printf("%.16f", a);}
+void PT(const char a) {putchar(a);}
+
+/* The line will last forever! */
+void PL(void) {PT('\n');}
+template<typename T, typename ... TT>
+void PL(const T a, const TT ...  b) {PT(a); if (sizeof...(b)) PT(' '); PL(b...);}
 
 int main()
 {
