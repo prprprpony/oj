@@ -27,7 +27,7 @@ struct rmqq
         int li = 0;
         for (int i = 1<<K; i + (1<<K) < n; ++i) {
             T x = f(t[K][i-(1<<K)],t[K][i+1]);
-            if (f(a[i],x) == a[i] && (!m || v[0][m-1] != a[i])) {
+            if (t[K][i-(1<<K)] != a[i] && f(a[i],x) == a[i]) {
                 for (; li <= i; nxt[li] = m, ++li);
                 v[0][m++] = a[i];
                 i += (1<<K);
