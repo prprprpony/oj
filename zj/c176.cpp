@@ -8,11 +8,10 @@ const ll inf = 2.1e13;
 struct blk
 {
 	ll a[S],v[S],p[S+1],tg;
-	bool q;
-	int x;
+	int q;
 	void bld()
 	{
-		q=0;
+		q=-1;
 		copy_n(a,S,v);
 		sort(v,v+S);
 		for (int j=S-1;j>=0;--j)
@@ -31,16 +30,13 @@ struct blk
 	}
 	ll qry()
 	{
-		if (!q) {
-			x = 0;
-			for (int i = 1<<(D-1); i; i>>=1)
-				if (v[x|i] + tg < 0)
-					x|=i;
-			if (v[x] + tg < 0)
-				++x;
-			q = 1;
+		if (q < 0 && v[q = 0] + tg < 0) {
+			for (int i = S>>1; i; i>>=1)
+				if (v[q|i] + tg < 0)
+					q|=i;
+			++q;
 		}
-		return p[x] + (S-x) * tg;
+		return p[q] + (S-q) * tg;
 	}
 	void add(int i,int j,ll w)
 	{
@@ -51,7 +47,7 @@ struct blk
 	void add(ll w)
 	{
 		tg+=w;
-		q=0;
+		q=-1;
 	}
 } b[N>>D];
 int main()
