@@ -39,12 +39,17 @@ int main()
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 	while ((cin >> n >> k) && n) {
-		for (int i = 1; i <= n; ++i) {
+		for (int i = 1; i <= n; ++i)
 			cin >> a[i];
+		int low = a[1], high = a[1];
+		for (int i = 1, mn = 0, mx = 0; i <= n; ++i) {
 			a[i] += a[i - 1];
+			low = min(a[i] - mx, low);
+			high = max(a[i] - mn, high);
+			mn = min(mn, a[i]);
+			mx = max(mx, a[i]);
 		}
 		build(0, 0, n);
-		ll low = -10000 * n, high = 10000 * n;
 		while (low <= high) {
 			int mid = low + ((high - low) >> 1);
 			if (ok(mid))
