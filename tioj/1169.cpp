@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 const int N = 2e5+87;
-int a[N], ans[N];
+int a[N];
 struct ev
 {
     int k,t,l,r;
@@ -28,7 +28,7 @@ void bld(int o,int l,int r)
         tr[o].pre = tr[o].post = tr[o].len = 1;
         return;
     }
-    int m=(l+r)>>1;
+    int m=l+((r-l)>>1);
     bld(o+o+1,l,m);
     bld(o+o+2,m,r);
     meld(m-l,tr[o+o+1],r-m,tr[o+o+2],tr[o]);
@@ -39,7 +39,7 @@ void chg(int o,int l,int r,int i,int v)
         tr[o].pre = tr[o].post = tr[o].len = v;
         return;
     }
-    int m=(l+r)>>1;
+    int m=l+((r-l)>>1);
     if (i < m)
         chg(o+o+1,l,m,i,v);
     else
@@ -66,7 +66,7 @@ int main()
     cin >> n >> q >> c;
     for (int i = 0; i < n; ++i) {
         cin >> a[i];
-        e[m++] = {a[i],-1,i,87};
+        e[m++] = {a[i],-2,i,87};
     }
     for (int i = 0; i < q; ++i) {
         int t;
@@ -74,8 +74,8 @@ int main()
         if (!t) {
             int p,k;
             cin>>p>>k;
-            e[m++] = {a[p],-2,p,87};
-            e[m++] = {a[p]=k,-1,p,87};
+            e[m++] = {a[p],-1,p,87};
+            e[m++] = {a[p]=k,-2,p,87};
         } else {
             int x,y,k;
             cin>>x>>y>>k;
@@ -83,14 +83,14 @@ int main()
         }
     }
     for (int i = 0; i < n; ++i)
-        e[m++] = {a[i],-2,i,87};
+        e[m++] = {a[i],-1,i,87};
     stable_sort(e,e+m);
     bld(0,0,n);
     for (int i = 0; i < m; ++i)
         if (e[i].t >= 0)
-            ans[e[i].t] = qry(0,0,n,e[i].l,e[i].r).len;
+            a[e[i].t] = qry(0,0,n,e[i].l,e[i].r).len;
         else
-            chg(0,0,n,e[i].l,(e[i].t+2)^1);
+            chg(0,0,n,e[i].l,e[i].t+2);
     for (int i = 0; i < w; ++i)
-        cout << ans[i] << '\n';
+        cout << a[i] << '\n';
 }
