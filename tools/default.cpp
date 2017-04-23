@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 // nichijou
-#define REP(i,a,b) for (int i = (a), __e = (b); i < __e; ++i)
+#define REP(i,a,b) for (int i(a), _B(b); i < _B; ++i)
 #define RP(i,n) REP(i,0,n)
-#define PER(i,s,e) for (int i = (s) - 1, __e = (e); i >= __e; --i)
+#define PER(i,a,b) for(int i((a)-1), _B(b); i >= _B; --i)
 #define PR(i,n) PER(i,n,0)
-#define REP1(i,a,b) for (int i = (a), __e = (b); i <= __e; ++i)
+#define REP1(i,a,b) REP(i,a,(b)+1)
 #define RP1(i,n) REP1(i,1,n)
-#define PER1(i,s,e) for (int i = (s), __e = (e); i >= __e; --i)
+#define PER1(i,a,b) PER(i,(a)+1,b)
 #define PR1(i,n) PER1(i,n,1)
 #define DO(n) REP(__i,0,n)
 template<typename T>
@@ -37,31 +37,34 @@ typedef vector<ll> vll;
 
 /* Reading input is now 20% cooler! */
 bool RD(void) {return true;}
-bool RD(int & a) {return scanf("%d", &a) == 1;}
-bool RD(ll & a) {return scanf("%lld", &a) == 1;}
-bool RD(double & a) {return scanf("%lf", &a) == 1;}
 bool RD(char & a) {return scanf(" %c", &a) == 1;}
 bool RD(char * a) {return scanf("%s", a) == 1;}
+bool RD(double & a) {return scanf("%lf", &a) == 1;}
+bool RD(int & a) {return scanf("%d", &a) == 1;}
+bool RD(ll & a) {return scanf("%lld", &a) == 1;}
+
 template<typename T, typename ... TT>
 bool RD(T & a, TT & ...  b) {return RD(a) && RD(b...);}
 
 /* Do princesses dream of magic sheep? */
-#define DRI(a) int a; RD(a)
-#define DRII(a,b) DRI(a); DRI(b)
-#define DRIII(a,b,c) DRI(a); DRII(b,c)
-#define DRIIII(a,b,c,d) DRI(a); DRIII(b,c,d)
+#define RI(a) int a; RD(a)
+#define RII(a,b) RI(a); RI(b)
+#define RIII(a,b,c) RI(a); RII(b,c)
+#define RIIII(a,b,c,d) RI(a); RIII(b,c,d)
 
 /* For it's time for you to fulfill your output. */
-void PT(const int a) {printf("%d", a);}
-void PT(const ll a) {printf("%lld", a);}
-void PT(const double a) {printf("%.16f", a);}
 void PT(const char a) {putchar(a);}
 void PT(const char * a) {fputs(a, stdout);}
+void PT(char * a) {fputs(a, stdout);}
+void PT(const double a) {printf("%.16f", a);}
+void PT(const int a) {printf("%d", a);}
+void PT(const ll a) {printf("%lld", a);}
 
 /* The line will last forever! */
-void PL(void) {PT('\n');}
-template<typename T, typename ... TT>
-void PL(const T a, const TT ...  b) {PT(a); if (sizeof...(b)) PT(' '); PL(b...);}
+template<char sep = ' ',char end = '\n'>
+void PL(void) {if (end) PT(end);}
+template<char sep = ' ',char end = '\n',typename T, typename ... TT>
+void PL(const T a, const TT ...  b) {PT(a); if (sizeof...(b) && sep) PT(sep); PL<sep,end>(b...);}
 
 /* Good Luck && Have Fun ! */
 int main()
