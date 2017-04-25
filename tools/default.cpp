@@ -56,11 +56,11 @@ void _BG(const char * s,T a, TT...b)
 		}
 	}
 	cerr<<" = "<<a;
-	if (*s)
+	if (*s) {
 		cerr<<", ";
-	else
+		_BG(++s,b...);
+	} else
 		cerr<<endl;
-	_BG(++s,b...);
 }
 #define BG(...) do { \
 	cerr << __PRETTY_FUNCTION__ << ':' << __LINE__ << ": "; \
