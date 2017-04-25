@@ -35,6 +35,38 @@ typedef vector<ll> vll;
 #define PB push_back
 #define EB emplace_back
 
+/* I gave you my heart and then you turned around. */
+void _BG(const char * s) {}
+template<typename T, typename ... TT>
+void _BG(const char * s,T a, TT...b)
+{
+	for (int c = 0; *s && (c || *s != ','); ++s) {
+		cerr<<*s;
+		switch (*s) {
+		case '(':
+		case '[':
+		case '{':
+			++c;
+			break;
+		case ')':
+		case ']':
+		case '}':
+			--c;
+			break;
+		}
+	}
+	cerr<<" = "<<a;
+	if (*s)
+		cerr<<", ";
+	else
+		cerr<<endl;
+	_BG(++s,b...);
+}
+#define BG(...) do { \
+	cerr << __PRETTY_FUNCTION__ << ':' << __LINE__ << ": "; \
+	_BG(#__VA_ARGS__,__VA_ARGS__); \
+} while(0)
+
 /* Reading input is now 20% cooler! */
 bool RD(void) {return true;}
 bool RD(char & a) {return scanf(" %c", &a) == 1;}
