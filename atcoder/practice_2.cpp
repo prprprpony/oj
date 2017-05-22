@@ -41,11 +41,11 @@ void Ford_Johnson(It first, It last, Cmp cmp)
 		node * kth(size_t i)
 		{
 			size_t w = 1 + (c[0] ? c[0]->s : 0);
-			if (i == w)
-				return this;
 			if (i < w)
 				return c[0]->kth(i);
-			return c[1]->kth(i - w);
+			if (i > w)
+				return c[1]->kth(i - w);
+			return this;
 		}
 		int ch(node * v)
 		{
@@ -120,6 +120,7 @@ void Ford_Johnson(It first, It last, Cmp cmp)
 			a[i] = a[i]->merge(a[i+w]);
 	}
 	node * rt = a[0];
+	rt->pull();
 	while (k--) {
 		{
 			node ** x = a;
@@ -131,39 +132,29 @@ void Ford_Johnson(It first, It last, Cmp cmp)
 			a[i+w] = a[i]->pop();
 		for (size_t t0 = 0, t1 = 1, c = 2;  w + t0 < m; t0 = t1, c <<= 1, t1 = c - t1)
 			for (size_t i = min(w + t1, m); i-- > w + t0; ) {
-				node * l, * r = nullptr;
-				bool odd = i == w + w;
-				if (odd) {
-					l = rt;
+				size_t lo = 1, hi;
+				if (i == w + w) {
+					hi = rt->s;
 				} else {
 					rt = a[i - w]->splay();
-					l = rt->cutc(0);
+					hi = rt->c[0] ? rt->c[0]->s : 0;
 				}
-				if (l) {
-					size_t lo = 1, hi = l->s;
-					while (lo <= hi) {
-						size_t mi = lo + ((hi - lo) >> 1);
-						l = l->kth(mi)->splay();
-						if (cmp(*(l->k), *(a[i]->k)))
-							lo = mi + 1;
-						else
-							hi = mi - 1;
-					}
-					if (hi) {
-						l = l->kth(hi)->splay();
-						r = l->cutc(1);
-					} else {
-						r = l;
-						l = nullptr;
-					}
+				while (lo <= hi) {
+					size_t mi = lo + ((hi - lo) >> 1);
+					rt = rt->kth(mi)->splay();
+					if (cmp(*(rt->k), *(a[i]->k)))
+						lo = mi + 1;
+					else
+						hi = mi - 1;
 				}
-				a[i]->setc(0,l);
-				a[i]->setc(1,r);
-				if (odd) {
-					rt = a[i];
+				if (hi) {
+					rt = rt->kth(hi)->splay();
+					a[i]->setc(1,rt->cutc(1));
+					a[i]->setc(0,rt);
 				} else {
-					rt->setc(0,a[i]);
+					a[i]->setc(1,rt);
 				}
+				rt = a[i];
 			}
 	}
 	node ** x = a;
