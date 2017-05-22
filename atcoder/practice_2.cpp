@@ -1,6 +1,7 @@
 #include <iostream>
 #include <functional>
 #include <iterator>
+#include <algorithm>
 using namespace std;
 template<typename It, typename Cmp>
 void Ford_Johnson(It first, It last, Cmp cmp)
@@ -12,10 +13,10 @@ void Ford_Johnson(It first, It last, Cmp cmp)
 		node * p;
 		node * c[2];
 		size_t s;
-		node * lc; // use c[1] as right-sibling pointwr
-		node * merge(node * t)
+		node * lc; // use c[1] as right-sibling pointer
+		node * merge(node * t,bool f)
 		{
-			if (Cmp()(*k, *(t->k))) {
+			if (f) {
 				c[1] = t->lc;
 				t->lc = this;
 				return t;
@@ -117,7 +118,7 @@ void Ford_Johnson(It first, It last, Cmp cmp)
 	size_t k = 0;
 	for (size_t w = n >> 1; w; ++k, w >>= 1) {
 		for (size_t i = 0; i < w; ++i)
-			a[i] = a[i]->merge(a[i+w]);
+			a[i] = a[i]->merge(a[i+w], cmp(*(a[i]->k), *(a[i+w]->k)));
 	}
 	node * rt = a[0];
 	rt->pull();
@@ -167,10 +168,10 @@ void Ford_Johnson(It first, It last, Cmp cmp)
 	delete [] a;
 	delete [] b;
 }
-template<typename It, typename Cmp = less<typename iterator_traits<It>::value_type>>
+template<typename It>
 void Ford_Johnson(It first, It last)
 {
-	Ford_Johnson(first, last, Cmp());
+	Ford_Johnson(first, last, less<typename iterator_traits<It>::value_type>());
 }
 struct cmp
 {
