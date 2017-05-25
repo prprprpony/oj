@@ -6,4 +6,4 @@
 *   scoreboard: http://210.60.247.38:8890/Ranking.html
 *   solved 5 out of 6, ranked 2
 *   got 8.67 out of 17 points on problem "A3"
-*   [my unofficial problem analysis(Chinese)](http://prprprpony.github.io/blog/contest/2016/08/25/Lizen-High-School-Programming-Contest-Public.html)
+*   [my unofficial problem analysis(Chinese)](https://prprprpony.github.io/blog/2016/08/25/Lizen-High-School-Programming-Contest-Public/)
