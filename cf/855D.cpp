@@ -13,6 +13,8 @@ int lca(int u,int v)
 			v = pa[v][k];
 	if (v == u)
 		return u;
+	if (!de[u])
+		return 0;
 	for (int k = __lg(de[u]); k >= 0; --k)
 		if ((1 << k) <= de[u] && pa[u][k] != pa[v][k]) {
 			u = pa[u][k];
