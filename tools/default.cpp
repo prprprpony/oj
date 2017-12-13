@@ -10,10 +10,10 @@ using namespace std;
 #define PER1(i,a,b) PER(i,(a)+1,b)
 #define PR1(i,n) PER1(i,n,1)
 #define DO(n) RP(__i,n)
-template<class T>
-void cmax(T & a, T b) {a = max(a, b);}
-template<class T>
-void cmin(T & a, T b) {a = min(a, b);}
+template<class T,class U>
+bool cmax(T & a, const U & b) {return a < b ? a = b, 1 : 0;}
+template<class T,class U>
+bool cmin(T & a, const U & b) {return b < a ? a = b, 1 : 0;}
 
 // data type
 typedef long long ll;
