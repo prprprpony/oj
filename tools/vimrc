@@ -1,0 +1,9 @@
+se nocompatible
+set clipboard=unnamedplus
+colo torte
+syn on
+se ai ar nu rnu cin
+se mouse=a ts=4 sw=4
+map <F8> <ESC>:w<CR>:!clear && g++ "%" -o "%<" -std=c++11 -Wall -Wextra -Wconversion -Wshadow -O2 -DPR3PONY -fsanitize=undefined && echo success<CR>
+map <F9> <ESC>:w<CR>:!clear && g++ "%" -o "%<" -std=c++11 -Wall -Wextra -Wconversion -Wshadow -O2 -DPR3PONY && echo success<CR>
+map <F10> <ESC>:!./"%<"<CR>

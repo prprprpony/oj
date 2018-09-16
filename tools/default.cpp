@@ -52,10 +52,14 @@ void _BG(const char * s,T a, TT...b)
     }
     _BG(s,b...);
 }
+#ifdef PR3PONY
 #define BG(...) do { \
 	cerr << __PRETTY_FUNCTION__ << ':' << __LINE__ << ": "; \
 	_BG(#__VA_ARGS__,__VA_ARGS__); \
 } while(0)
+#else
+#define BG(...)
+#endif
 
 /* Reading input is now 20% cooler! */
 bool RD() {return 1;}
