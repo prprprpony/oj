@@ -36,26 +36,23 @@ typedef vector<ll> vll;
 #define EB emplace_back
 
 /* I gave you my heart and then you turned around. */
-void _BG(const char * s) {cerr<<s<<endl;};
+void _BG(const char * s) {cerr<<s<<endl;}
 template<class T, class ... TT>
 void _BG(const char * s,T a, TT...b)
 {
-	for (int c = 0; *s && (c || *s != ','); ++s) {
-		cerr<<*s;
-		for (char x : "([{") c += *s == x;
-		for (char x : ")]}") c -= *s == x;
-	}
-	cerr<<" = "<<a;
-	if (sizeof...(b)) {
-		cerr<<", ";
+    for (size_t c = 0; *s && (c || *s != ','); cerr << *s++)
+        c += count(ALL("([{"),*s) - count(ALL(")]}"),*s);
+    cerr << " = " << a;
+    if (*s) {
+        cerr << ", ";
         ++s;
     }
     _BG(s,b...);
 }
 #ifdef PR3PONY
 #define BG(...) do { \
-	cerr << __PRETTY_FUNCTION__ << ':' << __LINE__ << ": "; \
-	_BG(#__VA_ARGS__,__VA_ARGS__); \
+    cerr << __PRETTY_FUNCTION__ << ':' << __LINE__ << ": "; \
+    _BG(#__VA_ARGS__,__VA_ARGS__); \
 } while(0)
 #else
 #define BG(...)
