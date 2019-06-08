@@ -19,6 +19,8 @@ int main()
         a[__lg(m)].emplace_back(m,v);
         tot += v;
     }
+    assert(tot);
+    tot /= abs(tot);
     ll s = 0;
     for (int i = 0; i < K; ++i) {
         ll cur = 0;
@@ -27,7 +29,7 @@ int main()
                 p.S *= -1;
             cur += p.S;
         }
-        if ((cur > 0) == (tot > 0))
+        if (cur * tot > 0)
             s |= 1ll << i;
     }
     cout << s << endl;
