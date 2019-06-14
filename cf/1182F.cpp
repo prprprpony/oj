@@ -36,8 +36,9 @@ int solve()
         int i;
         for (i = 0; a + i + S - 1 <= b; i += S) {
             int d = i * p % q;
-            int s = lower_bound(v,v+m,pii(q-d,INT_MIN)) - v;
-            int j = lower_bound(v+s,v+s+m,pii(((q+1)/2+q-d)%q,INT_MIN),[&](pii x,pii y){return (x.F+d)%q < (y.F+d)%q;}) - v;
+            int e = (q - d) % q;
+            int s = lower_bound(v,v+m,pii(e,INT_MIN)) - v;
+            int j = lower_bound(v+s,v+s+m,pii(((q+1)/2+e)%q,INT_MIN),[&](pii x,pii y){return (x.F+d)%q < (y.F+d)%q;}) - v;
             if (j < s+m)
                 ans = min(ans,g(v[j].S+i));
             if (j-1 >= s)
