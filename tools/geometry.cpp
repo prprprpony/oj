@@ -4,12 +4,14 @@ using namespace std;
 #define ALL(a) begin(a), end(a)
 #define PB push_back
 
+/*** geometry.cpp ***/
 // copied and modified from bcw_codebook
 // list of algorithms: point operations, convex hull (Andrew's monotone chain), minkowski sum
 #define x first
 #define y second
 #define cpdd const pdd
 typedef long long val_t;
+typedef double db_t;
 // typedef __int128 val_t;
 // typedef double val_t;
 // typedef long double val_t;
@@ -37,8 +39,8 @@ struct pdd : pair<val_t, val_t> {
         return x*p.x + y*p.y;
     }
 };
-double abs(cpdd &p) { return hypot(p.x, p.y); }
-double arg(cpdd &p) { return atan2(p.y, p.x); }
+db_t abs(cpdd &p) { return hypot((db_t)p.x, (db_t)p.y); }
+db_t arg(cpdd &p) { return atan2((db_t)p.y, (db_t)p.x); }
 val_t cross(cpdd &p, cpdd &q) {const val_t L = 1; return p.x*L*q.y - p.y*L*q.x; }
 val_t cross(cpdd &p, cpdd &q, cpdd &o) { return cross(p-o, q-o); }
 pdd operator * (val_t f, cpdd &p) { return p*f; } // !! Not f*p !!
@@ -97,3 +99,4 @@ vector<pdd> minkowski(vector<pdd> a, vector<pdd> b)
     // assert(q == convex_hull(q));
     return convex_hull(q);
 }
+/*** geometry.cpp ***/
