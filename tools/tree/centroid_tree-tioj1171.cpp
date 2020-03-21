@@ -7,8 +7,8 @@ typedef pair<int,int> pii;
 
 /*** centroid_tree.cpp ***/
 // tree: stored in g[], 1-indexed
-// euler tour technique + sparse table: O(n log n) preprocess, O(1) query dist(u, v)
-// centroid tree: O(n) build, O(log n) query
+// euler tour technique + sparse table: O(n log n) build, O(1) query dist(u, v)
+// centroid tree: O(n log n) build, O(log n) query
 const int maxn = 1.12e5;
 const int etn = 2 * maxn;
 const int etd = __lg(etn) + 1;
